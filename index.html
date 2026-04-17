@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>for u 💗</title>
+<style>
+  body {
+    margin: 0;
+    background: linear-gradient(135deg, #ffd6e7, #ffeef5);
+    font-family: "Comic Sans MS", cursive;
+    overflow: hidden;
+  }
+
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 2;
+  }
+
+  .letter {
+    font-size: 60px;
+    cursor: pointer;
+    animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  .hint {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #ff6fa5;
+    animation: blink 1.2s infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0.4; }
+  }
+
+  /* 🌸 LAYER KHUSUS BUNGA */
+  #flower-bg {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .flower {
+    position: absolute;
+    animation: pop 1.5s ease forwards;
+  }
+
+  @keyframes pop {
+    0% {
+      transform: scale(0);
+      opacity: 0;
+    }
+    100% {
+      transform: scale(1.8);
+      opacity: 1;
+    }
+  }
+
+  /* 💌 MESSAGE DI ATAS */
+  .message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    padding: 25px;
+    border-radius: 20px;
+    text-align: center;
+    display: none;
+    z-index: 2;
+    animation: fadeCute 1.5s ease forwards;
+  }
+
+  @keyframes fadeCute {
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+
+  .heart {
+    animation: heartbeat 1s infinite;
+  }
+
+  @keyframes heartbeat {
+    50% { transform: scale(1.2); }
+  }
+</style>
+</head>
+<body>
+
+<div id="flower-bg"></div>
+
+<div class="center" id="start">
+  <div class="letter" onclick="openLetter()">💌</div>
+  <div class="hint">pencet akuu 👉👈</div>
+</div>
+
+<div class="message" id="msg">
+  🌸🌷🌼<br><br>
+  kamu bilang suka bungaa,<br>
+  nih bungaa buat kamuu pujanggakuu 💐<br><br>
+  <span class="heart">💗</span>
+</div>
+
+<script>
+function openLetter() {
+  document.getElementById("start").style.display = "none";
+
+  const container = document.getElementById("flower-bg");
+  const flowers = ["🌸","🌼","🌷","🌹","🌻","🌺","💮"];
+
+  for (let i = 0; i < 150; i++) {
+    setTimeout(() => {
+      let f = document.createElement("div");
+      f.className = "flower";
+      f.innerText = flowers[Math.floor(Math.random()*flowers.length)];
+
+      f.style.left = Math.random() * window.innerWidth + "px";
+      f.style.top = Math.random() * window.innerHeight + "px";
+      f.style.fontSize = (20 + Math.random() * 50) + "px";
+
+      container.appendChild(f);
+    }, i * 15);
+  }
+
+  setTimeout(() => {
+    document.getElementById("msg").style.display = "block";
+  }, 1800);
+}
+</script>
+
+</body>
+</html>
